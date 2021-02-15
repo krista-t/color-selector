@@ -11,7 +11,9 @@
 }
 
 .color-box {
-  background: thistle;
+  height: 300px;
+  width: 250px;
+  background: rgb(235, 225, 235);
   justify-content: space-around;
   flex-direction: column;
   padding: 15px;
@@ -27,7 +29,7 @@
   text-align: center;
   height: 150px;
   width: 150px;
-  background-color: thistle;
+  background-color: rgb(235, 225, 235);
   border: none;
   margin-left: calc(50% - 75px);
   margin-top: 5px;
@@ -37,7 +39,7 @@
   height: 150px;
   width: 185px;
   padding: 0.5rem;
-  background-color: thistle;
+  background-color: rgb(235, 225, 235);
   border: none;
   margin-top: 5px;
 }
@@ -47,11 +49,12 @@ span {
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: 5px;
+  padding: 2px;
 }
 
-.span-input {
-  background-color: thistle;
+/* .span-input {
+  background-color: rgb(235, 225, 235);
   border: none;
   height: 18px;
-  width: 100px;
-}
+  width: 80px;
+} */
