@@ -9,18 +9,24 @@ function start() {
 //delegator function
 function changeColor() {
   const hexValue = document.querySelector("input").value;
-  //call colorBox func
+  //change color of the colorbox
   colorBox(hexValue);
-  //call  writeHex
+  //writeHex value
   writeHex(hexValue);
   //convert rgb to hex
-  const rgb = convertToRgb(hexValue);
-  //call writeTgB
+  const rgb = hexToRgb(hexValue);
+  //writeTgB value
   writeRgB(rgb.r, rgb.g, rgb.b);
-  //convert rgb to hsl function call
-  const hsl = convertToHsl(rgb.r, rgb.g, rgb.b);
-  //write hsl
+  //convert rgb to hsl function
+  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+  //write hsl value
   writeHsl(hsl.h, hsl.s, hsl.l);
+  //rgb to CSS string
+  const cssStr = rgbToCSS(rgb);
+  console.log(cssStr);
+  //hex to RGB
+  const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+  console.log(hex);
 }
 
 function colorBox(colorValue) {
@@ -32,7 +38,7 @@ function writeHex(value) {
   let hexTxt = document.querySelector(".hex");
   hexTxt.innerHTML = `HEX: ${value}`;
 }
-function convertToRgb(hex) {
+function hexToRgb(hex) {
   let red = hex.substring(1, 3);
   let green = hex.substring(3, 5);
   let blue = hex.substring(5, 7);
@@ -46,10 +52,10 @@ function convertToRgb(hex) {
 function writeRgB(red, blue, green) {
   // console.log(red, blue, green);
   let rgbTxt = document.querySelector(".rgb");
-  rgbTxt.innerHTML = `RGB: ${red}, ${blue}, ${green}`;
+  rgbTxt.innerHTML = `RGB: ${red} ${blue} ${green}`;
 }
 
-function convertToHsl(r, g, b) {
+function rgbToHsl(r, g, b) {
   // console.log(r, g, b);
   r /= 255;
   g /= 255;
@@ -96,8 +102,30 @@ function convertToHsl(r, g, b) {
   return { h, s, l };
 }
 
-function writeHsl(hvalue, svalue, lvalue) {
-  console.log(hvalue, svalue, lvalue);
+function writeHsl(Hvalue, Svalue, Lvalue) {
+  console.log(Hvalue, Svalue, Lvalue);
   let hslTxt = document.querySelector(".hsl");
-  hslTxt.innerHTML = `HSL: ${hvalue} ${svalue}% ${lvalue}% `;
+  hslTxt.innerHTML = `HSL: ${Hvalue} ${Svalue}% ${Lvalue}% `;
+}
+
+function rgbToCSS(rgb) {
+  // converts rgb object to CSS color string
+  let cssStr = "rgb" + "(" + `${rgb.r},${rgb.g},${rgb.b}` + ")";
+  console.log(cssStr);
+  return cssStr;
+}
+
+function rgbToHex(r, g, b) {
+  r = r.toString(16);
+  g = g.toString(16);
+  b = b.toString(16);
+  if (r.length < 2 || g.length < 2 || b.length < 2) {
+    r = r.padStart(2, "0");
+    g = g.padStart(2, "0");
+    b = b.padStart(2, "0");
+  }
+  const hex = "#" + `${r}${g}${b}`;
+
+  console.log(hex);
+  return hex;
 }
